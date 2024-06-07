@@ -1,0 +1,20 @@
+XPath
+//tagname[@attribute='']
+//tagname[text()='']
+
+Contains
+//tagname[contains(@attribute,'')]
+//tagname[contains(text(),'')]
+
+Grouping of xpath - starts at 1
+(//span[text()='Allow all cookies'])[2]
+
+Example: verify in chrome - ctrl+f
+//span[text()='Allow all cookies']
+
+
+(//span[text()='Allow all cookies'])[2]
+
+//input[@value='-1']
+
+//b[contains(text(),'phpMyAdmin')]

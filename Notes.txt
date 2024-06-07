@@ -1,0 +1,62 @@
+
+https://accounts.google.com/o/oauth2/v2/auth?redirect_uri=https%3A%2F%2Fdevelopers.google.com%2Foauthplayground&prompt=consent&response_type=code&client_id=407408718192.apps.googleusercontent.com&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcalendar&access_type=offline
+
+
+
+
+
+https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?redirect_uri=https%3A%2F%2Fdevelopers.google.com%2Foauthplayground&prompt=consent&response_type=code&client_id=407408718192.apps.googleusercontent.com&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcalendar%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.file%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.readonly&access_type=offline&service=lso&o2v=2&ddm=0&flowName=GeneralOAuthFlow
+
+
+
+
+
+
+
+
+
+Outh2.0 
+
+Level 1 - get authorization code 
+
+endpoint --> authorization url?client_id=&scope=&redirect_uri=   ---> Auth code 
+
+
+Level 2 - Use authorization code and get access token 
+endpoint --> access_token_url?auth_code, client_secret   ---> access token 
+
+
+
+
+Finally, use access token to actual start working with calendar api, get, post request.., 
+
+
+
+
+pm.test("Verify calendar count", function () {
+    var jsonData = pm.response.json();
+    console.log(jsonData.items.length)
+    pm.expect(jsonData.items.length).to.eql(3);
+});
+
+pm.test("Your test name", function () {
+     var jsonData = pm.response.json();
+
+  //get first calendar summary under items array
+   console.log(jsonData.items[0].summary)
+   //write foreach loop to print each calendar summary
+   jsonData.items.forEach((item, index) => { 
+    console.log(item.summary)
+
+    // if summary == 'Fun day 2024' 
+    //set its id value to the collection variable "cal_id"
+    if (item.summary == "Fun day 2024")
+    {
+        pm.collectionVariables.set("cal_id", item.id);
+        pm.expect(pm.collectionVariables.get("cal_id")).to.eql(item.id)
+    }
+ })
+ });
+
+
+

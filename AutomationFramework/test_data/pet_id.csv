@@ -1,0 +1,4 @@
+${test_name};${pet_id};${expected_status}
+TC1;201;404
+TC2;101;200
+TC3;102;404

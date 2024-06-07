@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0 (Python 3.11.4 on win32)" generated="2024-06-07T09:48:15.931428" rpa="false" schemaversion="5">
+<suite id="s1" name="Demo2 Petstore Suite" source="C:\Mine\Company\Swift Support\AutomationProject\demo4_api_suite\demo2_petstore_suite.robot">
+<kw name="Create Session" owner="RequestsLibrary" type="SETUP">
+<msg time="2024-06-07T09:48:16.369259" level="INFO">Creating Session using : alias=petshop, url=https://petstore.swagger.io/v2/, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>alias=petshop</arg>
+<arg>url=https://petstore.swagger.io/v2/</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2024-06-07T09:48:16.368262" elapsed="0.002993"/>
+</kw>
+<test id="s1-t1" name="TC1 Add Valid Pet" line="9">
+<kw name="Get Binary File" owner="OperatingSystem">
+<msg time="2024-06-07T09:48:16.372251" level="INFO" html="true">Getting file '&lt;a href="file://C:\Mine\Company\Swift Support\AutomationProject\files\add_pet.json"&gt;C:\Mine\Company\Swift Support\AutomationProject\files\add_pet.json&lt;/a&gt;'.</msg>
+<msg time="2024-06-07T09:48:16.373248" level="INFO">${json} = {
+    "id": 201,
+    "category": {
+        "id": 0,
+        "name": "string"
+    },
+    "name": "doggie-201",
+    "photoUrls": [
+        "string"
+    ],
+    "tags": [
+        {
+           ...</msg>
+<var>${json}</var>
+<arg>${EXECDIR}${/}files${/}add_pet.json</arg>
+<doc>Returns the contents of a specified file.</doc>
+<status status="PASS" start="2024-06-07T09:48:16.372251" elapsed="0.000997"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-06-07T09:48:16.374246" level="INFO">&amp;{header} = { Content-Type=application/json | Connection=keep-alive }</msg>
+<var>&amp;{header}</var>
+<arg>Content-Type=application/json</arg>
+<arg>Connection=keep-alive</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-06-07T09:48:16.373248" elapsed="0.000998"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2024-06-07T09:48:16.966717" level="INFO">POST Request : url=https://petstore.swagger.io/v2/pet 
+ path_url=/v2/pet 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '288'} 
+ body=b'{\r\n    "id": 201,\r\n    "category": {\r\n        "id": 0,\r\n        "name": "string"\r\n    },\r\n    "name": "doggie-201",\r\n    "photoUrls": [\r\n        "string"\r\n    ],\r\n    "tags": [\r\n        {\r\n            "id": 0,\r\n            "name": "string"\r\n        }\r\n    ],\r\n    "status": "available"\r\n}' 
+ </msg>
+<msg time="2024-06-07T09:48:16.966717" level="INFO">POST Response : url=https://petstore.swagger.io/v2/pet 
+ status=200, reason=OK 
+ headers={'Date': 'Fri, 07 Jun 2024 08:48:17 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, POST, DELETE, PUT', 'Access-Control-Allow-Headers': 'Content-Type, api_key, Authorization', 'Server': 'Jetty(9.2.9.v20150224)'} 
+ body={"id":201,"category":{"id":0,"name":"string"},"name":"doggie-201","photoUrls":["string"],"tags":[{"id":0,"name":"string"}],"status":"available"} 
+ </msg>
+<msg time="2024-06-07T09:48:16.966717" level="INFO">C:\Program Files\Python311\Lib\site-packages\urllib3\connectionpool.py:1056: InsecureRequestWarning: Unverified HTTPS request is being made to host 'petstore.swagger.io'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg time="2024-06-07T09:48:16.967714" level="INFO">${respone} = &lt;Response [200]&gt;</msg>
+<var>${respone}</var>
+<arg>alias=petshop</arg>
+<arg>url=pet</arg>
+<arg>headers=${header}</arg>
+<arg>data=${json}</arg>
+<arg>expected_status=200</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2024-06-07T09:48:16.374246" elapsed="0.593468"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-06-07T09:48:16.969710" level="INFO">{'id': 201, 'category': {'id': 0, 'name': 'string'}, 'name': 'doggie-201', 'photoUrls': ['string'], 'tags': [{'id': 0, 'name': 'string'}], 'status': 'available'}</msg>
+<arg>${respone.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-06-07T09:48:16.967714" elapsed="0.001996"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2024-06-07T09:48:16.971704" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${respone.json()}[id]</arg>
+<arg>201</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2024-06-07T09:48:16.969710" elapsed="0.001994"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${respone.json()}[name]</arg>
+<arg>doggie-201</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2024-06-07T09:48:16.971704" elapsed="0.001995"/>
+</kw>
+<status status="PASS" start="2024-06-07T09:48:16.372251" elapsed="0.601448"/>
+</test>
+<kw name="Delete All Sessions" owner="RequestsLibrary" type="TEARDOWN">
+<msg time="2024-06-07T09:48:16.975694" level="INFO">Deleting All Sessions</msg>
+<doc>Removes all the session objects</doc>
+<status status="PASS" start="2024-06-07T09:48:16.975694" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-06-07T09:48:15.934419" elapsed="1.042272"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Demo2 Petstore Suite">Demo2 Petstore Suite</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

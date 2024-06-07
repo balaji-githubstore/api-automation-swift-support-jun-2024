@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0 (Python 3.11.4 on win32)" generated="2024-06-07T10:29:42.286052" rpa="false" schemaversion="5">
+<suite id="s1" name="Demo1 Suite" source="C:\Mine\Company\Swift Support\AutomationProject\demo2_robot_suite\demo1_suite.robot">
+<test id="s1-t1" name="TC1" line="12">
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Balaji Dinakaran</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2024-06-07T10:29:42.321972" elapsed="0.000980"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Welcome to robot framework session</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2024-06-07T10:29:42.323950" elapsed="0.000000"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>message=Hi Everyone</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2024-06-07T10:29:42.324961" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-06-07T10:29:42.321972" elapsed="0.004971"/>
+</test>
+<status status="PASS" start="2024-06-07T10:29:42.288057" elapsed="0.040879"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Demo1 Suite">Demo1 Suite</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
